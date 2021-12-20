@@ -23,3 +23,18 @@ body{
 #start-button,#status{
     font-size: 22px;
 }
+
+.instruction_image{
+    display: inline-block;
+    width:45% ;
+}
+
+.modal-dialog{
+    width: 90%;
+}
+
+h4{
+    color: black;
+    line-height: 2;
+    margin: 0px;
+}
