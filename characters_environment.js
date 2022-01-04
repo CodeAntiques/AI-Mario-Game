@@ -223,6 +223,7 @@ function instializeInDraw(){
 // Character get coins
 function getCoins(coin,character){
   if( character.overlap(coin) && character.live && coin.get==false){
+    mario_coin.play();
     character.coins+=1;
     coin.get=true;
   };
@@ -313,7 +314,8 @@ function manualControl(character){
 /* Movements of character */
 function jumping(character){
 	if( (noseY<200 &&character.live) || (touchIsDown&&character.live) ){
-		character.velocity.y+=gameConfig.jump;
+		mario_jump.play();
+    character.velocity.y+=gameConfig.jump;
 	}
 }
 
@@ -363,6 +365,7 @@ function StepOnEnemy(obj1,obj2){
 		obj2.live=false;
     obj1.killing=30;
     obj1.kills++;
+    mario_kick.play();
     if(obj1.velocity.y>=gameConfig.jump*0.8){
       obj1.velocity.y=gameConfig.jump*0.8;
     }else{
@@ -374,9 +377,13 @@ function StepOnEnemy(obj1,obj2){
 
 // make character die if he touched by enemy
 function die(character){
-    character.live=false;
+  character.live=false;
     character.dying+=120;
     character.liveNumber--;
+    if (character.liveNumber>0) {
+      mario_die.play();  
+
+    }
     character.status="dead";
     character.changeAnimation('dead');
     character.velocity.y-=2;
@@ -391,6 +398,7 @@ function checkStatus(character){
   }
   if(character.live==false && character.liveNumber==0){
     gameConfig.status="gameover"
+    mario_gameover.play();
   }
 
 }
